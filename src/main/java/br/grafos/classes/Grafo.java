@@ -6,11 +6,18 @@ public class Grafo {
 	
 	private List<Vertice> vertices;
 	private List<Aresta> arestas;
+	private boolean dirigido;
 	
 	public Grafo(){
 		super();
 	}
-		
+	
+	public boolean isDirigido() {
+		return dirigido;
+	}
+	public void setDirigido(boolean dirigido) {
+		this.dirigido = dirigido;
+	}
 	public Grafo(List<Vertice> vertices, List<Aresta> arestas) {
 		this.vertices = vertices;
 		this.arestas = arestas;

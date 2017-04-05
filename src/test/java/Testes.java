@@ -67,12 +67,20 @@ public class Testes {
 		grafo.getVertices().add(new Vertice(1));
 		grafo.getVertices().add(new Vertice(2));
 		grafo.getVertices().add(new Vertice(3));
-		//grafo.getVertices().add(new Vertice(4));
+		grafo.getVertices().add(new Vertice(4));
+		grafo.getVertices().add(new Vertice(5));
+		grafo.getVertices().add(new Vertice(6));
 		
 		grafo.getArestas().add(new Aresta(new Vertice(1), new Vertice(2)));
-		grafo.getArestas().add(new Aresta(new Vertice(1), new Vertice(3)));
-		//grafo.getArestas().add(new Aresta(new Vertice(2), new Vertice(4)));
-		//grafo.getArestas().add(new Aresta(new Vertice(3), new Vertice(4)));
+		grafo.getArestas().add(new Aresta(new Vertice(1), new Vertice(4)));
+		grafo.getArestas().add(new Aresta(new Vertice(2), new Vertice(5)));
+		grafo.getArestas().add(new Aresta(new Vertice(3), new Vertice(6)));
+		grafo.getArestas().add(new Aresta(new Vertice(3), new Vertice(5)));
+		grafo.getArestas().add(new Aresta(new Vertice(4), new Vertice(2)));
+		grafo.getArestas().add(new Aresta(new Vertice(5), new Vertice(4)));
+		grafo.getArestas().add(new Aresta(new Vertice(6), new Vertice(6)));
+		
+		grafo.setDirigido(true);
 		
 		int size = grafo.getVertices().size();
 		matriz = new Matriz(size,size);
@@ -81,6 +89,8 @@ public class Testes {
 			for(Aresta aresta : grafo.getArestas()){
 				if(aresta.getVerticeBase().getNumero() == vertice.getNumero()){
 					matriz.getValue().get(vertice.getNumero() - 1).set(aresta.getVerticeAdjacente().getNumero() - 1, 1);
+					
+					if(!grafo.isDirigido())
 					matriz.getValue().get(aresta.getVerticeAdjacente().getNumero() - 1).set(vertice.getNumero() - 1, 1);
 				}
 			}
@@ -88,5 +98,5 @@ public class Testes {
 		
 		matriz.imprime();
 	}
-
+	
 }

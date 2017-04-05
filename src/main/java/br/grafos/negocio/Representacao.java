@@ -1,5 +1,6 @@
 package br.grafos.negocio;
 
+import br.grafos.classes.Aresta;
 import br.grafos.classes.Grafo;
 import br.grafos.classes.Matriz;
 import br.grafos.classes.Vertice;
@@ -16,22 +17,27 @@ public class Representacao {
 		this.grafo = grafo;
 	}
 	
-	public int[][] gerarMatrizDeIncidencia(){
+	public Matriz gerarMatrizDeIncidencia(){
 		return null;
 	}
 	
-	public int[][] gerarMatrizDeAdjacencia(){
+	public Matriz gerarMatrizDeAdjacencia(){
 		
-		Matriz matriz = new Matriz(7,7);
+		int size = grafo.getVertices().size();
+		Matriz matriz = new Matriz(size,size);
 		
-		for(Vertice vertice : getGrafo().getVertices()){
-			
-			matriz.getValue();
-			
+		for(Vertice vertice : grafo.getVertices()){
+			for(Aresta aresta : grafo.getArestas()){
+				if(aresta.getVerticeBase().getNumero() == vertice.getNumero()){
+					matriz.getValue().get(vertice.getNumero() - 1).set(aresta.getVerticeAdjacente().getNumero() - 1, 1);
+					
+					if(!grafo.isDirigido())
+					matriz.getValue().get(aresta.getVerticeAdjacente().getNumero() - 1).set(vertice.getNumero() - 1, 1);
+				}
+			}
 		}
 		
-		
-		return null;
+		return matriz;
 	}	
 
 }

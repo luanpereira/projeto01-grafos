@@ -28,4 +28,17 @@ public class Matriz {
 			System.out.println(" ");
 		}
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder retorno = new StringBuilder();
+		
+		for(List<Integer> i : value){
+			for(Integer val : i)
+			retorno.append(val).append(" ");
+			retorno.append("\n");
+		}
+		
+		return retorno.toString();
+	}
 }
