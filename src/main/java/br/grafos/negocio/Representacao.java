@@ -1,5 +1,8 @@
 package br.grafos.negocio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.grafos.classes.Aresta;
 import br.grafos.classes.Grafo;
 import br.grafos.classes.Matriz;
@@ -53,5 +56,24 @@ public class Representacao {
 		
 		return matriz;
 	}	
+	
+	public List<Vertice> calcularGrauDeUmVertice(){
+		
+		int count;
+		
+		for(Vertice vertice : grafo.getVertices()){
+			count = 0;
+			
+			for(Aresta aresta : grafo.getArestas()){
+				if(aresta.getVerticeBase().getNumero() == vertice.getNumero()){
+					count++;
+				}
+			}
+			
+			vertice.setGrau(count);
+		}		
+		
+		return grafo.getVertices();
+	}
 
 }

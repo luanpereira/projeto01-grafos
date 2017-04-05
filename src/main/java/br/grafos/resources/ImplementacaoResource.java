@@ -14,7 +14,9 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
 import br.grafos.classes.Grafo;
+import br.grafos.classes.Vertice;
 import br.grafos.negocio.Representacao;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Path("grafos")
 public class ImplementacaoResource {
@@ -48,11 +50,11 @@ public class ImplementacaoResource {
 		return null;
 	}
 	
-	@Path("/matriz/incidencia")
+	@Path("/matriz/grau")
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String gerarMatrizDeIncidencia(String conteudo){
+	public String calculaGrauVertice(String conteudo){
 		Gson gson = new Gson();
 		Type listType = new TypeToken<ArrayList<Grafo>>(){}.getType();
 		StringBuilder retorno = new StringBuilder();
@@ -64,8 +66,11 @@ public class ImplementacaoResource {
 			
 			for(Grafo grafo : grafos){
 				representacao.setGrafo(grafo);
-				retorno.append("Matriz de Adjacência: ").append(grafo.getDescricao()).append("\n")
-					   .append(representacao.gerarMatrizDeIncidencia().toString()).append("\n\n");
+				retorno.append("Grau dos Vertices do grafo: ").append(grafo.getDescricao()).append("\n");
+				
+				for(Vertice vertice : representacao.calcularGrauDeUmVertice()){
+					retorno.append("Vertice ").append(vertice.getNumero()).append(": Grau ").append(vertice.getGrau()).append("\n");
+				}
 			}
 			
 			return retorno.toString();
@@ -75,5 +80,13 @@ public class ImplementacaoResource {
 		}
 
 		return null;
+	}	
+	
+	@Path("/matriz/incidencia")
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String gerarMatrizDeIncidencia(String conteudo){
+		throw new NotImplementedException();
 	}	
 }

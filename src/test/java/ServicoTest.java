@@ -44,6 +44,7 @@ public class ServicoTest {
 		List<Grafo> lista = new ArrayList<>();
 		Grafo grafo = new Grafo();
 		
+		grafo.setDescricao("Grafo 01");
 		grafo.setArestas(new ArrayList<>());
 		grafo.setVertices(new ArrayList<>());
 		
@@ -72,7 +73,7 @@ public class ServicoTest {
 
 		try {
 
-			String response = target.path("/grafos/").request().post(entity, String.class);
+			String response = target.path("/grafos/matriz/adjacencia").request().post(entity, String.class);
 
 			Assert.assertNotNull(response);
 			
