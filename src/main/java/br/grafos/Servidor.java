@@ -11,7 +11,7 @@ public class Servidor {
 	private static HttpServer server;
 
 	public static HttpServer inicializaServidor() {
-	    ResourceConfig config = new ResourceConfig().packages("br.grafos.resource");
+	    ResourceConfig config = new ResourceConfig().packages("br.grafos.resources");
 	    URI uri = URI.create("http://localhost:8080/");
 	    server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
 	    System.out.println("Servidor subiu!");
@@ -19,7 +19,7 @@ public class Servidor {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		ResourceConfig config = new ResourceConfig().packages("br.grafos.resource");
+		ResourceConfig config = new ResourceConfig().packages("br.grafos.resources");
 		URI uri = URI.create("http://localhost:8080/");
 		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
 		System.out.print("Servidor subiu!");

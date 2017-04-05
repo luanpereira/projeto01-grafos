@@ -7,11 +7,18 @@ public class Grafo {
 	private List<Vertice> vertices;
 	private List<Aresta> arestas;
 	private boolean dirigido;
+	private String descricao;
 	
 	public Grafo(){
 		super();
 	}
 	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	public boolean isDirigido() {
 		return dirigido;
 	}
